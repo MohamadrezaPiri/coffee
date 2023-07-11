@@ -1,0 +1,53 @@
+<!-- <form action="/shop/order/detail" method="post">
+    {% csrf_token %}
+    {% for item in queryset %}
+        {% if orders %} <input name="order_{{item.id}}" type="number" value="{{orders|length|add:'1'}}" placeholder="order"> {% else %} <input name="order_{{item.id}}" type="number" value="1" placeholder="order"> {% endif %}
+    {% endfor %}
+    <br>
+    {% for table in tables %}
+        <label for="table">{{table.name}}</label>
+        <input type="radio" name="table" value="{{table}}">    
+    {% endfor %}
+    <br> 
+
+    {% for item in queryset %}
+        {{item.name}} <input name="quantity_{{item.id}}" type="number" value="0" placeholder="quantity">
+    {% endfor %}   
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+ 
+ -->
+
+
+ <form action="/shop/order/detail" method="post">
+    {% csrf_token %}
+    <label for="order">Order: </label>
+    {% if orders %} <input name="order" type="number" value="{{orders|length|add:'1'}}" placeholder="order"> {% else %} <input name="order" type="number" value="1" placeholder="order"> {% endif %}
+   
+    <br>
+    <br>
+   
+    <label for="table">Table: </label>
+    <select name="table">
+        {% for table in free_tables %}
+            <option value="{{table}}">{{table}}</option>
+        {% endfor %}
+    </select>
+    
+    <br> 
+    <br> 
+
+    {% for item in queryset %}
+        {{item.name}} <input name="quantity_{{item.id}}" type="number" value="0" placeholder="quantity">
+    {% endfor %}   
+   
+    <br>
+    <br>
+   
+    <input type="submit" value="Submit">
+</form>
+
+ 
+
